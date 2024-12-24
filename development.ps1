@@ -72,7 +72,7 @@ if ($WindowsPhase -eq 'WinPE') {
     $null = Stop-Transcript -ErrorAction Ignore
 
     #Start OSDCloud and pass all the parameters except the Language to allow for prompting
-    Start-OSDCloud -OSVersion 'Windows 10' -OSBuild 21H2 -OSEdition Development -OSActivation Volume -SkipAutopilot -SkipODT -Restart
+    Start-OSDCloud -OSVersion 'Windows 11' -OSBuild 23H2 -OSEdition Enterprise -OSActivation Volume -SkipAutopilot -Restart -FindImageFile -Firmware -OSLanguage 'en-us' -Screenshot
 }
 #endregion
 #=================================================
@@ -111,7 +111,7 @@ if ($WindowsPhase -eq 'OOBE') {
         Write-Warning 'Unable to determine if device is Autopilot registered'
     }
     osdcloud-RemoveAppx -Basic
-    osdcloud-Rsat -Basic
+    osdcloud-Rsat -Full
     osdcloud-NetFX
     osdcloud-UpdateDrivers
     osdcloud-UpdateWindows
